@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ResumeForge AI — Free private resume editor. Build professional resumes in your browser. Upgrade for AI rewriting and cloud saves.">
+<meta name="description" content="ResumeForge AI — Free private resume editor. Upgrade for AI rewriting, cloud saves and cover letters.">
 <title>ResumeForge AI — Private Resume Studio</title>
 <style>
 :root {
@@ -95,6 +95,7 @@ nav a:hover { text-decoration: underline; }
   cursor: pointer;
   font-size: 15px;
   transition: filter 0.15s;
+  text-align: center;
 }
 .btn-primary { background: var(--accent); color: white; }
 .btn-primary:hover { filter: brightness(1.12); }
@@ -246,7 +247,8 @@ button.secondary { background: #2b3b55; }
   color: var(--muted);
 }
 .price li::before { content: "✓ "; color: var(--success); }
-.price .btn { width: 100%; text-align: center; margin-top: auto; }
+.price form { margin-top: auto; }
+.price .btn { width: 100%; }
 
 .security-grid {
   display: grid;
@@ -336,7 +338,6 @@ footer a { color: #c5b8ff; }
 </section>
 
 <main>
-  <!-- EDITOR -->
   <form class="panel" id="editor">
     <h3>Resume Studio</h3>
 
@@ -404,7 +405,6 @@ footer a { color: #c5b8ff; }
     </div>
   </form>
 
-  <!-- PREVIEW -->
   <div>
     <div class="panel tools" style="margin-bottom:18px">
       <h3>Live Preview</h3>
@@ -424,12 +424,13 @@ footer a { color: #c5b8ff; }
   </div>
 </main>
 
-<!-- PRICING -->
+<!-- PRICING - LIVE PAYMENTS -->
 <section class="section" id="pricing">
   <h2>Simple plans. Real results.</h2>
   <p style="color:var(--muted); max-width:600px;">Start free. Upgrade only when you need AI power and cloud saves.</p>
 
   <div class="prices">
+    <!-- FREE -->
     <div class="price">
       <h3>Free Studio</h3>
       <div class="amount">$0</div>
@@ -443,6 +444,7 @@ footer a { color: #c5b8ff; }
       <a href="#editor" class="btn btn-secondary">Start Free</a>
     </div>
 
+    <!-- JOB SEEKER PACK - $19 -->
     <div class="price popular">
       <h3>Job Seeker Pack</h3>
       <div class="amount">$19 <small>one-time</small></div>
@@ -454,9 +456,19 @@ footer a { color: #c5b8ff; }
         <li>ATS score checker</li>
         <li>30 days full access</li>
       </ul>
-      <button class="btn btn-primary" disabled>Coming soon</button>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="arcmitiku@gmail.com">
+        <input type="hidden" name="item_name" value="ResumeForge AI - Job Seeker Pack (30 days)">
+        <input type="hidden" name="amount" value="19.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://yourwebsite.com/thank-you">
+        <input type="hidden" name="cancel_return" value="https://yourwebsite.com">
+        <button type="submit" class="btn btn-primary">Get Job Seeker Pack – $19</button>
+      </form>
     </div>
 
+    <!-- PRO - $9/month -->
     <div class="price">
       <h3>Pro</h3>
       <div class="amount">$9 <small>/ month</small></div>
@@ -467,11 +479,25 @@ footer a { color: #c5b8ff; }
         <li>New templates first</li>
         <li>Priority support</li>
       </ul>
-      <button class="btn btn-secondary" disabled>Coming soon</button>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick-subscriptions">
+        <input type="hidden" name="business" value="arcmitiku@gmail.com">
+        <input type="hidden" name="item_name" value="ResumeForge AI Pro">
+        <input type="hidden" name="a3" value="9.00">
+        <input type="hidden" name="p3" value="1">
+        <input type="hidden" name="t3" value="M">
+        <input type="hidden" name="src" value="1">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://yourwebsite.com/thank-you">
+        <input type="hidden" name="cancel_return" value="https://yourwebsite.com">
+        <button type="submit" class="btn btn-secondary">Start Pro – $9/month</button>
+      </form>
     </div>
   </div>
-  <p class="note" style="margin-top:20px; text-align:center;">
-    7-day money-back guarantee when paid features launch. Payments via PayPal — we never see your card details.
+
+  <p class="note" style="margin-top:22px; text-align:center;">
+    Secure payments powered by PayPal. We never see or store your card details.<br>
+    7-day money-back guarantee on all paid plans.
   </p>
 </section>
 
@@ -502,7 +528,8 @@ footer a { color: #c5b8ff; }
 
 <footer>
   © 2026 ResumeForge AI · Built for privacy-conscious professionals<br>
-  <a href="mailto:Mitiku.woldesenbet.org@gmail.com">Contact & Privacy requests</a>
+  <a href="mailto:Mitiku.woldesenbet.org@gmail.com">Contact & Privacy requests</a> · 
+  Payments: arcmitiku@gmail.com
 </footer>
 
 <script>
@@ -547,7 +574,6 @@ function load() {
   } catch(e){}
 }
 
-// Live update + save
 $('editor').addEventListener('submit', e => e.preventDefault());
 $('editor').addEventListener('input', () => { render(); save(); checkUpgrade(); });
 $('editor').addEventListener('change', () => { render(); save(); });
@@ -557,7 +583,6 @@ function checkUpgrade() {
   if (filled >= 4) $('upgradeBanner').classList.add('show');
 }
 
-// Sample
 $('sample').onclick = () => {
   if (fields.some(k => $(k).value) && !confirm('Replace current content with sample?')) return;
   const s = {
@@ -575,7 +600,6 @@ $('sample').onclick = () => {
   checkUpgrade();
 };
 
-// Clear
 $('clear').onclick = () => {
   if (!confirm('Clear all fields? Download a backup first if needed.')) return;
   fields.forEach(k => $(k).value = '');
@@ -587,7 +611,6 @@ $('clear').onclick = () => {
   $('upgradeBanner').classList.remove('show');
 };
 
-// Backup
 $('backup').onclick = () => {
   const text = fields.map(k => k.toUpperCase() + '\n' + $(k).value).join('\n\n') +
                '\n\nIMPORTED SOURCE\n' + $('importText').value;
@@ -598,13 +621,11 @@ $('backup').onclick = () => {
   status('Backup downloaded.');
 };
 
-// Print
 $('print').onclick = () => {
   status('Opening print dialog… Choose “Save as PDF” if available.');
   window.print();
 };
 
-// Copy to summary
 $('useSummary').onclick = () => {
   if (!$('importText').value.trim()) return status('Import or paste text first.');
   if ($('summary').value && !confirm('Replace current summary?')) return;
@@ -613,7 +634,6 @@ $('useSummary').onclick = () => {
   status('Text copied to Profile. Move sections into the correct fields.');
 };
 
-// Script loader
 const scripts = {};
 function loadScript(url) {
   if (scripts[url]) return scripts[url];
@@ -626,7 +646,6 @@ function loadScript(url) {
   });
 }
 
-// Import
 $('import').onclick = async () => {
   const file = $('file').files[0];
   if (!file) return status('Please choose a file first.');
@@ -673,7 +692,6 @@ $('import').onclick = async () => {
   }
 };
 
-// Init
 load();
 render();
 </script>
