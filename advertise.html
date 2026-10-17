@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Launch Your Smart Ads Campaign | Mamachi Ads</title><meta name="description" content="Order your animated social ads: choose time, reach and placement, see your posting schedule, and pay securely.">
+<style>:root{--bg:#020617;--card:#0b1226;--line:#1e293b;--fg:#e2e8f0;--mut:#94a3b8;--ac:#38bdf8;--g:linear-gradient(90deg,#0ea5e9,#6366f1,#ec4899)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.55}main{max-width:620px;margin:0 auto;padding:22px}a{color:var(--ac)}
+h1{text-align:center;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;margin:.5em 0 .2em}h1 span{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}.sub{text-align:center;color:var(--mut);font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:18px}h2{font-size:.74rem;letter-spacing:.09em;color:var(--ac);border-bottom:1px solid var(--line);padding-bottom:6px;margin:20px 0 10px}
+label{font-size:.72rem;color:var(--mut);font-weight:700;display:block}input,select,textarea{width:100%;padding:10px;margin:4px 0 12px;border-radius:10px;border:1px solid var(--line);background:#050a18;color:var(--fg);font:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.row{grid-template-columns:1fr}}.chk{display:flex;gap:8px;align-items:flex-start;font-size:.8rem;color:var(--fg);background:#050a18;border:1px solid var(--line);border-radius:12px;padding:10px;margin:6px 0}.chk input{width:auto;margin:3px 0 0}
+.sum{background:#050a18;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:6px}.big{font-size:2.4rem;font-weight:900;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}td,th{padding:6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:.7rem}small{color:var(--mut);font-size:.74rem}.hp{position:absolute;left:-9999px}#msg{margin-top:12px;font-size:.9rem;min-height:1.4em}#own{display:none}
+</style></head><body><main>
+<p class="sub"><a href="index.html">&larr; Back to Mamachi Ads</a></p>
+<h1>Launch Your <span>Smart Ads Campaign</span></h1><p class="sub">Think outside the box, use SI for your business.</p>
+<form id="f" class="card" novalidate>
+<h2>1. YOUR OFFER</h2>
+<div class="row"><label>Your name / company<input name="name" required maxlength="80"></label><label>Contact email (private)<input name="email" type="email" required></label></div>
+<div class="row"><label>Product or service title<input name="productTitle" required maxlength="120"></label><label>Destination page (https)<input name="link" type="url" required placeholder="https://"></label></div>
+<label>What are you promoting? (1 to 3 sentences)<textarea name="summary" rows="3" required minlength="10" maxlength="600"></textarea></label>
+<div class="row"><label>Write my ads in<select name="language"></select></label><label>Hashtags (optional)<input name="hashtags" maxlength="120" placeholder="#coffee #local"></label></div>
+<h2>2. TIME, REACH AND PLACEMENT</h2>
+<div class="row"><label>Duration<select name="unit"></select></label><label>How many<input name="qty" type="number" min="1" value="1"></label></div>
+<div class="row"><label>Reach level<select name="geoLevel"></select></label><label>Region<select name="geoRegion"></select></label></div>
+<label>Placement<select name="slot"></select></label>
+<label class="chk"><input type="checkbox" name="unique" checked><span><b>A different text on each platform</b><br><small id="xu"></small></span></label>
+<label class="chk"><input type="checkbox" name="ownSocial"><span><b>Also post on my own social accounts</b><br><small id="xo"></small></span></label>
+<div id="own"><small>We only ever post <b>your ad, with your link</b>, on <b>the accounts you connect here</b>. Details are encrypted, used only during your paid period, and deleted when it ends or when you disconnect. Available today:</small>
+<div class="row"><label>Bluesky handle<input name="bs_handle" placeholder="you.bsky.social"></label><label>Bluesky app password (not your login password)<input name="bs_pass" type="password" autocomplete="off"></label></div>
+<div class="row"><label>Mastodon server<input name="ma_inst" placeholder="mastodon.social"></label><label>Mastodon access token<input name="ma_tok" type="password" autocomplete="off"></label></div>
+<div class="row"><label>Telegram channel (add <b id="bot"></b> as an admin who can post)<input name="tg_chan" placeholder="@yourchannel"></label><label>Discord webhook URL<input name="dc_hook" placeholder="https://discord.com/api/webhooks/..."></label></div>
+<small>Facebook, Instagram, YouTube and TikTok will be added once those platforms approve our connection.</small>
+<label class="chk"><input type="checkbox" name="consent"><span>I own or manage these accounts and I allow Mamachi to post my ad on them during my paid period.</span></label></div>
+<label class="chk"><input type="checkbox" name="renewReminder" checked><span>Email me a renewal link with 10% off when my campaign ends.</span></label>
+<input class="hp" name="website_url" tabindex="-1" autocomplete="off">
+<h2>3. YOUR PRICE AND POSTING SCHEDULE</h2>
+<div class="sum"><div class="big" id="pr">$0</div><small id="bk"></small><div id="sc" style="margin-top:8px"></div><table id="tb"></table></div>
+<h2>4. SECURE CHECKOUT</h2><div id="pay-paypal"></div><div id="pay-card"></div>
+<p><small>Pay by PayPal or debit/credit card. Every ad is reviewed first and labelled Sponsored. Not allowed: guaranteed income or returns, scams, adult content, weapons, drugs, counterfeit goods, false health claims. If your ad is not approved you are refunded in full. Results are not guaranteed. The final price is confirmed by our server before you pay.</small></p>
+<div id="msg" role="status"></div><p><small><a href="#" id="dc">Disconnect my accounts</a> (needs your order number and code)</small></p></form></main>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture&enable-funding=card"></script>
+<script>
+const WORKER='https://YOUR-WORKER.workers.dev', TG_BOT='@YourMamachiBot';
+const LANGS=['English','Spanish','French','Portuguese','German','Arabic','Amharic','Swahili','Hindi','Chinese','Japanese','Russian'],REGIONS=['Worldwide','Africa','Europe','North America','Latin America','Middle East','Asia','Oceania'];
+const NAMES={hour:'Hours',day:'Days',week:'Weeks',month:'Months',year:'Years'};
+const f=document.getElementById('f'),msg=document.getElementById('msg'),say=t=>msg.textContent=t,$=id=>document.getElementById(id);let P=null;const Q=new URLSearchParams(location.search);
+$('bot').textContent=TG_BOT;f.language.innerHTML=LANGS.map(x=>`<option>${x}</option>`).join('');f.geoRegion.innerHTML=REGIONS.map(x=>`<option>${x}</option>`).join('');
+const fmt=v=>(P?P.cur:'$')+v.toFixed(2);
+function calc(){if(!P)return;const d=Object.fromEntries(new FormData(f));const unit=d.unit,qty=Math.max(1,Math.floor(+d.qty)||1),g=P.geo.find(x=>x.id===d.geoLevel),s=P.slot.find(x=>x.id===d.slot);if(!g||!s)return;
+ const add=(f.ownSocial.checked?P.addons.ownSocial:0)+(f.unique.checked?P.addons.unique:0),disc=Q.get('renew')?P.renewDiscount:0,p=P.rates[unit]*qty*g.m*s.m*(1+add)*(1-disc),hrs=P.hrs[unit]*qty,ppd={feed:1,social:2,hero:3}[s.id],total=Math.max(1,Math.ceil(hrs/24*ppd));
+ $('pr').textContent=fmt(p);$('bk').textContent=`${P.rates[unit]} x ${qty} x reach ${g.m} x placement ${s.m}${add?' x extras '+(1+add).toFixed(2):''}${disc?' less 10% renewal':''}`;
+ const times=(P.schedule[s.id]||[12]);$('sc').innerHTML=`<b>${ppd} post${ppd>1?'s':''} a day, ${total} in total.</b> Times (UTC): ${times.map(x=>String(x).padStart(2,'0')+':00').join(', ')}. The first post comes at the next time after we approve your ad.`;
+ const days=Math.min(7,Math.ceil(total/ppd)),rows=['<tr><th>Day</th><th>Posts (UTC)</th></tr>'];let left=total;for(let i=1;i<=days;i++){const n=Math.min(ppd,left);left-=n;rows.push(`<tr><td>Day ${i}</td><td>${times.slice(0,n).map(x=>String(x).padStart(2,'0')+':00').join(', ')}</td></tr>`)}if(Math.ceil(total/ppd)>7)rows.push(`<tr><td colspan="2"><small>...and so on until all ${total} posts are made.</small></td></tr>`);$('tb').innerHTML=rows.join('')}
+fetch('pricing.json').then(r=>r.json()).then(p=>{P=p;f.unit.innerHTML=Object.keys(p.rates).map(u=>`<option value="${u}">${NAMES[u]}</option>`).join('');f.geoLevel.innerHTML=p.geo.map(g=>`<option value="${g.id}">${g.n} (${g.s})</option>`).join('');f.slot.innerHTML=p.slot.map(s=>`<option value="${s.id}">${s.n} (${s.s})</option>`).join('');
+ $('xu').textContent=`+${p.addons.unique*100}% | fresh wording on every channel`;$('xo').textContent=`+${p.addons.ownSocial*100}% | we post only your ad on accounts you connect`;
+ if(p.rates[Q.get('unit')])f.unit.value=Q.get('unit');if(+Q.get('qty')>0)f.qty.value=Math.floor(+Q.get('qty'));if(p.geo.some(g=>g.id===Q.get('geo')))f.geoLevel.value=Q.get('geo');if(p.slot.some(s=>s.id===Q.get('slot')))f.slot.value=Q.get('slot');
+ f.ownSocial.checked=Q.get('own')==='1';f.unique.checked=Q.get('var')!=='same';$('own').style.display=f.ownSocial.checked?'block':'none';calc()});
+f.addEventListener('input',calc);f.addEventListener('change',()=>{$('own').style.display=f.ownSocial.checked?'block':'none';calc()});
+const post=async(p,b)=>{const r=await fetch(WORKER+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json();if(!r.ok)throw new Error(j.error||'error');return j};
+function payload(){const d=Object.fromEntries(new FormData(f));return{name:d.name,email:d.email,productTitle:d.productTitle,link:d.link,summary:d.summary,language:d.language,hashtags:d.hashtags,unit:d.unit,qty:Math.floor(+d.qty)||1,geoLevel:d.geoLevel,geoRegion:d.geoRegion,slot:d.slot,
+ variation:f.unique.checked?'unique':'same',ownSocial:f.ownSocial.checked,renewReminder:f.renewReminder.checked,renewOf:Q.get('renew')||undefined,website_url:d.website_url}}
+function button(src,el){const b=paypal.Buttons({fundingSource:src,style:{layout:'horizontal',height:46,tagline:false},
+ onClick:(d,a)=>{if(!f.checkValidity()){f.reportValidity();return a.reject()}if(f.ownSocial.checked&&!f.consent.checked){say('Please tick the permission box for your own accounts.');return a.reject()}say('');return a.resolve()},
+ createOrder:async()=>{const d=Object.fromEntries(new FormData(f)),o=await post('/order',payload());window.manage={id:o.id,token:o.manageToken};
+  if(f.ownSocial.checked){const jobs=[['bluesky',{handle:d.bs_handle,appPassword:d.bs_pass}],['mastodon',{instance:d.ma_inst,token:d.ma_tok}],['telegram',{channel:d.tg_chan}],['discord',{webhook:d.dc_hook}]].filter(([,v])=>Object.values(v).every(Boolean));
+   if(!jobs.length)throw new Error('connect at least one account, or untick the option');for(const [platform,v] of jobs){say('Checking your '+platform+' account...');await post('/social/save',{id:o.id,manageToken:o.manageToken,platform,...v})}}
+  say('Price confirmed: $'+o.amount+' '+o.currency);return o.orderId},
+ onApprove:async d=>{say('Confirming your payment...');const j=await post('/capture',{orderId:d.orderID}),m=window.manage||{};
+  if(j.ok){msg.innerHTML='';const p=document.createElement('p');p.append('Payment received. Your ad is now being reviewed and starts once approved. Bookmark your private tracking page: ');const a=document.createElement('a');a.href=`track.html?id=${m.id}&token=${m.token}`;a.textContent='track my ad';p.append(a,'. Order number: '+m.id+'. Disconnect code: '+m.token);msg.append(p)}else say('Payment was not completed. You have not been charged.')},
+ onError:e=>say('Could not complete checkout: '+(e.message||e)),onCancel:()=>say('Checkout cancelled. You have not been charged.')});if(b.isEligible())b.render(el)}
+if(typeof paypal==='undefined')say('Payments are not switched on yet. Please check back soon.');else{button(paypal.FUNDING.PAYPAL,'#pay-paypal');button(paypal.FUNDING.CARD,'#pay-card')}
+$('dc').onclick=async e=>{e.preventDefault();const id=prompt('Order number'),token=prompt('Your disconnect code');if(!id||!token)return;try{await post('/social/disconnect',{id,manageToken:token});say('Done. All your connected accounts were removed.')}catch(err){say('Could not disconnect: '+err.message)}};
+</script></body></html>

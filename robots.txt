@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mamachiad.github.io/mamachi-ad-engine/sitemap.xml

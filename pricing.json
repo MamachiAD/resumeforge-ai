@@ -1,0 +1,20 @@
+{
+  "cur": "$",
+  "rates": { "hour": 2, "day": 12, "week": 60, "month": 200, "year": 1800 },
+  "hrs": { "hour": 1, "day": 24, "week": 168, "month": 720, "year": 8760 },
+  "max": { "hour": 100000, "day": 100000, "week": 100000, "month": 100000, "year": 100000 },
+  "geo": [
+    { "id": "local", "n": "Local", "s": "Nearest regional channel", "m": 1 },
+    { "id": "country", "n": "Country", "s": "Country + language", "m": 1.8 },
+    { "id": "region", "n": "Region", "s": "Whole region", "m": 3 },
+    { "id": "world", "n": "Worldwide", "s": "All our channels", "m": 5 }
+  ],
+  "slot": [
+    { "id": "feed", "n": "Feed card", "s": "1 post a day", "m": 1 },
+    { "id": "social", "n": "Feed + social", "s": "2 posts a day", "m": 1.8 },
+    { "id": "hero", "n": "Hero + social", "s": "3 posts a day", "m": 3 }
+  ],
+  "addons": { "ownSocial": 0.2, "unique": 0.1 },
+  "renewDiscount": 0.1,
+  "schedule": { "feed": [12], "social": [6, 18], "hero": [6, 12, 18] }
+}

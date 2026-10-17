@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Track your ad | Mamachi Ads</title>
+<style>:root{--bg:#020617;--card:#0b1226;--line:#1e293b;--mut:#94a3b8;--ac:#38bdf8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#e2e8f0;font-family:Inter,system-ui,sans-serif;line-height:1.55}main{max-width:700px;margin:0 auto;padding:22px}a{color:var(--ac)}
+h1{font-size:1.8rem;font-weight:900;margin:.4em 0}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.k{background:#050a18;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}.k b{display:block;font-size:1.6rem}.k small{color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:.72rem}.pill{display:inline-block;padding:3px 12px;border-radius:99px;font-size:.75rem;font-weight:800;background:#38bdf822;color:#7dd3fc}</style></head><body><main>
+<p><a href="index.html">&larr; Mamachi Ads</a></p><h1>Track your ad</h1><div id="out" class="card">Loading...</div></main>
+<script>
+const WORKER='https://YOUR-WORKER.workers.dev',Q=new URLSearchParams(location.search),out=document.getElementById('out');
+const h=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n};
+const STATUS={pending_payment:'Waiting for payment',paid_review:'Paid, waiting for approval',approved:'Live',completed:'Finished',rejected:'Not approved (refunded)',payment_mismatch:'Payment problem'};
+fetch(WORKER+'/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:Q.get('id'),token:Q.get('token')})}).then(r=>r.json().then(j=>{if(!r.ok)throw new Error(j.error)||j;return j})).then(({order:o,posts,clicks})=>{
+ out.innerHTML='';out.append(h('h2','',o.product_title),h('span','pill',STATUS[o.status]||o.status));
+ const g=h('div','grid');g.style.marginTop='14px';[[posts.length,'posts made'],[o.posts_remaining,'posts left'],[clicks==null?'n/a':clicks,'link clicks']].forEach(([a,b])=>{const k=h('div','k');k.append(h('b','',a),h('small','',b));g.append(k)});out.append(g);
+ const t=(x)=>x?new Date(x).toLocaleString():'when approved';
+ out.append(h('p','',`Schedule: ${o.posts_per_day} post${o.posts_per_day>1?'s':''} a day at ${String(o.ad_hours||'').split(',').map(x=>x.padStart(2,'0')+':00').join(', ')} UTC. Different text per platform: ${o.variation==='unique'?'yes':'no'}. Reach: ${o.geo_level} (${o.geo_region}).`),h('p','',`Started: ${t(o.starts_at)}. Ends: ${t(o.ends_at)}.`));
+ const tb=h('table'),hd=h('tr');['When','Posted on'].forEach(x=>hd.append(h('th','',x)));tb.append(hd);posts.forEach(p=>{const r=h('tr');r.append(h('td','',new Date(p.posted_at).toLocaleString()),h('td','',p.platforms||''));tb.append(r)});out.append(h('h3','','Every post'),posts.length?tb:h('p','','No posts yet.'));
+ out.append(h('p','',"Clicks are counted on your tracked link. Views on each platform are not shared with us, so we only show what we can measure."))
+}).catch(e=>{out.textContent='This tracking link is not valid.'});
+</script></body></html>

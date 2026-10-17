@@ -1,0 +1,9 @@
+{
+  "instagram": { "live": false, "url": "" },
+  "youtube":   { "live": true,  "url": "https://www.youtube.com/@Mamachi_ADs" },
+  "tiktok":    { "live": true,  "url": "https://www.tiktok.com/@mamachiads" },
+  "x":         { "live": false, "url": "" },
+  "facebook":  { "live": false, "url": "" },
+  "linkedin":  { "live": false, "url": "" },
+  "worker": "https://YOUR-WORKER.workers.dev"
+}
